@@ -47,7 +47,6 @@ namespace GrafDwudzielny
             Queue<Wierzcholek> kolejka = new Queue<Wierzcholek>();
             startowy.Odwiedz();
             kolejka.Enqueue(startowy);
-            czyOdwiedzone[startowy.Wartosc - 1] = true;
 
             Console.WriteLine(startowy.Wartosc + " ");
             Wierzcholek aktualny;
@@ -60,7 +59,6 @@ namespace GrafDwudzielny
                     {
                         Console.WriteLine(sasiad.Wartosc + " ");
                         sasiad.Odwiedz();
-                        czyOdwiedzone[sasiad.Wartosc - 1] = true;
                         kolejka.Enqueue(sasiad);                   
                     }
                 }
