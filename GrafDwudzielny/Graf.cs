@@ -42,22 +42,37 @@ namespace GrafDwudzielny
             return wierzcholki.Contains(wierzcholek);
         }
 
-        public void BFS(Wierzcholek startowy)
+        public bool BFS(Wierzcholek startowy)
         {
             Queue<Wierzcholek> kolejka = new Queue<Wierzcholek>();
             startowy.Odwiedz();
+            startowy.Kolor = 1;
             kolejka.Enqueue(startowy);
 
-            Console.WriteLine(startowy.Wartosc + " ");
+            Console.Write(startowy.Wartosc + " ");
             Wierzcholek aktualny;
             while (kolejka.Count > 0)
             {
                 aktualny = kolejka.Dequeue();
                 foreach (Wierzcholek sasiad in aktualny.Sasiedzi)
                 {
+                    if(aktualny.Kolor==1)
+                    {
+                        if (sasiad.Kolor == 2 || sasiad.Kolor == -1)
+                            sasiad.Kolor = 2;
+                        else
+                            return false;
+                    }
+                    else
+                    {
+                        if (sasiad.Kolor == 1 || sasiad.Kolor == -1)
+                            sasiad.Kolor = 1;
+                        else
+                            return false;
+                    }
                     if (!sasiad.Odwiedzony)
                     {
-                        Console.WriteLine(sasiad.Wartosc + " ");
+                        Console.Write(sasiad.Wartosc + " ");
                         sasiad.Odwiedz();
                         kolejka.Enqueue(sasiad);                   
                     }
@@ -70,6 +85,7 @@ namespace GrafDwudzielny
                     BFS(wierzcholki[i]);
                 }
             }
+            return true;
         }
 
     }

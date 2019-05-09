@@ -11,11 +11,13 @@ namespace GrafDwudzielny
         List<Wierzcholek> sasiedzi;
         int wartosc;
         bool odwiedzony;
+        int kolor = -1;//-1 kolor neutralny
 
         public List<Wierzcholek> Sasiedzi { get { return sasiedzi; } set { sasiedzi = value; } }
         public int Wartosc { get { return wartosc; } set { wartosc = value; } }
         public bool Odwiedzony { get { return odwiedzony; } set { odwiedzony = value; } }
         public int IleSasiadow { get { return sasiedzi.Count; } }
+        public int Kolor { get { return kolor; } set { kolor = value; } }
 
         public Wierzcholek(int wartosc, List<Wierzcholek>sasiedzi)
         {
